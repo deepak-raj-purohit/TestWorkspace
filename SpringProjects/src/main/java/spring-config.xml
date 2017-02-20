@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+<bean id = "a" class = "com.app.A">
+<constructor-arg value = "Helllo"></constructor-arg>
+<constructor-arg value = "123"></constructor-arg>
+</bean>
+
+<bean id = "beforreadvisor" class = "com.app.aop.BeforeAdvisor"/>
+<bean id = "afteradvisor" class = "com.app.aop.AfterAdvisor"/>
+
+	<bean id = "proxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name = "target" ref = "a"/>
+		<property name = "interceptorNames">
+			<list>
+				<value>afteradvisor</value>
+				<value>beforreadvisor</value>
+			</list>
+		</property>
+	</bean>
+	
+	
+
+</beans>
